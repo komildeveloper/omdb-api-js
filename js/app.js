@@ -2,10 +2,9 @@
 
 const elList = document.querySelector('.list')
 const elTemplate = document.querySelector('.template').content
-const elNextBtn = document.querySelector('.next');
-const elPrevBtn = document.querySelector('.prev');
-
-console.log(elTemplate)
+const elNextBtn = document.querySelector('.next')
+const elPrevBtn = document.querySelector('.prev')
+const elPagination = document.querySelector('.pagination')
 
 const API_KEY = '747ee042'
 let search = 'shrek'
@@ -41,7 +40,7 @@ const getMovies = async () => {
 	)
 	const data = await request.json()
 
-	console.log(data)
+	const pageResults = data.totalResults / 10
 
 	if (data.Response === 'True' && data.Search.length > 0) {
 		renderMovies(data.Search, elList)
@@ -53,15 +52,15 @@ getMovies()
 input.addEventListener('change', e => {
 	search = e.target.value
 	getMovies()
-  e.target.value = ''
+	e.target.value = ''
 })
 
 elNextBtn.addEventListener('click', () => {
-  page++;
+	page++
 	getMovies()
 })
 
 elPrevBtn.addEventListener('click', () => {
-  page--;
+	page--
 	getMovies()
 })
