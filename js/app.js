@@ -53,6 +53,7 @@ getMovies()
 input.addEventListener('change', e => {
 	search = e.target.value
 	getMovies()
+  e.target.value = ''
 })
 
 elNextBtn.addEventListener('click', () => {
